@@ -65,37 +65,70 @@ background:rgba(0,0,0,.05);
 
 /* HEADER */
 
-
 header{
-    position: fixed;
-    top: 15px;
-    left: 50%;
-    transform: translateX(-50%);
+position:fixed;
+top:0;
+left:0;
+width:100%;
+padding:15px 30px;
+display:flex;
+justify-content:space-between;
+align-items:center;
 
-    width: calc(100% - 30px);
-    max-width: 1300px;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(20px);
+-webkit-backdrop-filter:blur(20px);
 
-    padding: 14px 28px;
+border-bottom:1px solid rgba(255,255,255,.1);
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    background: rgba(255,255,255,0.08);
-
-    backdrop-filter: blur(35px) saturate(180%);
-    -webkit-backdrop-filter: blur(35px) saturate(180%);
-
-    border: 1px solid rgba(255,255,255,0.12);
-
-    border-radius: 32px;
-
-    box-shadow:
-        inset 0 1px 1px rgba(255,255,255,.15),
-        0 15px 45px rgba(0,0,0,.25);
-
-    z-index: 1000;
+z-index:1000;
 }
+
+.logo{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.logo img{
+width:55px;
+height:55px;
+border-radius:50%;
+border:1px solid #ff4d88;
+}
+
+.logo h2{
+color:#ff4d88;
+}
+
+nav{
+display:flex;
+gap:15px;
+}
+
+nav a{
+text-decoration:none;
+color:white;
+padding:10px 18px;
+border-radius:30px;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(10px);
+transition:.4s;
+}
+
+nav a:hover{
+background:#ff4d88;
+box-shadow:
+0 0 15px #ff4d88,
+0 0 30px #ff4d88;
+}
+
+.menu{
+display:none;
+font-size:35px;
+cursor:pointer;
+}
+
 /* HERO */
 
 .hero{
@@ -300,6 +333,163 @@ display:flex;
 font-size:40px;
 }
 
+header{
+    position: fixed;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: calc(100% - 30px);
+    max-width: 1300px;
+
+    padding: 14px 28px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(35px) saturate(180%);
+    -webkit-backdrop-filter: blur(35px) saturate(180%);
+
+    border: 1px solid rgba(255,255,255,0.12);
+
+    border-radius: 32px;
+
+    box-shadow:
+        inset 0 1px 1px rgba(255,255,255,.15),
+        0 15px 45px rgba(0,0,0,.25);
+
+    z-index: 1000;
+}
+.btn,
+.telegram-btn{
+    position: relative;
+
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 14px 28px;
+    min-width: 170px;
+
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+
+    background: rgba(255,255,255,.08);
+
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+
+    border: 1px solid rgba(255,255,255,.12);
+
+    border-radius: 999px;
+
+    overflow: hidden;
+
+    box-shadow:
+        inset 0 1px 1px rgba(255,255,255,.15),
+        0 10px 30px rgba(0,0,0,.25);
+
+    transition: .4s ease;
+}
+
+.btn::before,
+.telegram-btn::before{
+    content:"";
+    position:absolute;
+
+    top:-50%;
+    left:-100%;
+
+    width:60%;
+    height:200%;
+
+    background:
+    linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.25),
+        transparent
+    );
+
+    transform: rotate(25deg);
+
+    transition:.8s;
+}
+
+.btn:hover,
+.telegram-btn:hover{
+    transform: translateY(-4px);
+
+    box-shadow:
+        inset 0 1px 2px rgba(255,255,255,.2),
+        0 18px 40px rgba(0,0,0,.35);
+
+    background: rgba(255,255,255,.12);
+}
+
+.btn:hover::before,
+.telegram-btn:hover::before{
+    left:150%;
+}
+body{
+    background:
+    radial-gradient(circle at top left,
+    rgba(90,120,255,.20),
+    transparent 35%),
+
+    radial-gradient(circle at bottom right,
+    rgba(255,255,255,.10),
+    transparent 35%),
+
+    linear-gradient(
+        135deg,
+        #04061b 0%,
+        #060d2e 40%,
+        #020511 100%
+    );
+
+    color: white;
+
+    overflow-x: hidden;
+
+    min-height: 100vh;
+}
+.glass-orb{
+    position: fixed;
+
+    border-radius: 50%;
+
+    filter: blur(120px);
+
+    pointer-events: none;
+
+    z-index: -1;
+}
+
+.orb1{
+    width: 350px;
+    height: 350px;
+
+    background: rgba(120,150,255,.20);
+
+    top: -100px;
+    left: -100px;
+}
+
+.orb2{
+    width: 300px;
+    height: 300px;
+
+    background: rgba(255,255,255,.08);
+
+    bottom: -100px;
+    right: -100px;
+}
+
 .hero-content p{
 font-size:18px;
 }
@@ -472,6 +662,8 @@ slides[index].classList.add("active");
 },3000);
 
 </script>
+<div class="glass-orb orb1"></div>
+<div class="glass-orb orb2"></div>
 
 </body>
 </html>
