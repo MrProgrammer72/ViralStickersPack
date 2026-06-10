@@ -1217,7 +1217,245 @@ nav {
 
     box-shadow: var(--glass-shadow);
 }
+/* ===== iOS 26 LIQUID GLASS SYSTEM ===== */
 
+:root{
+    --glass-bg: rgba(255,255,255,0.08);
+    --glass-border: rgba(255,255,255,0.18);
+
+    --liquid-blue: #3b82f6;
+    --liquid-cyan: #06b6d4;
+    --liquid-purple: #8b5cf6;
+    --liquid-green: #10b981;
+}
+
+/* Background Glow */
+body{
+    position: relative;
+    overflow-x: hidden;
+
+    background:
+        linear-gradient(
+        180deg,
+        #f8fafc,
+        #eef4ff);
+}
+
+body::before{
+    content:"";
+
+    position:fixed;
+
+    width:700px;
+    height:700px;
+
+    top:-250px;
+    left:-250px;
+
+    background:
+    radial-gradient(circle,
+    rgba(59,130,246,.35),
+    transparent 70%);
+
+    filter: blur(120px);
+
+    z-index:-2;
+}
+
+body::after{
+    content:"";
+
+    position:fixed;
+
+    width:600px;
+    height:600px;
+
+    bottom:-250px;
+    right:-250px;
+
+    background:
+    radial-gradient(circle,
+    rgba(139,92,246,.25),
+    transparent 70%);
+
+    filter: blur(120px);
+
+    z-index:-2;
+}
+nav,
+.service-card,
+.team-card,
+.blog-card,
+.testimonial-card,
+.work-card,
+.hero-floating-card,
+.newsletter-section{
+
+    background: rgba(255,255,255,.08);
+
+    backdrop-filter: blur(28px) saturate(180%);
+    -webkit-backdrop-filter: blur(28px) saturate(180%);
+
+    border: 1px solid var(--glass-border);
+
+    box-shadow:
+        0 8px 32px rgba(0,0,0,.10),
+        inset 0 1px 1px rgba(255,255,255,.35);
+
+    position: relative;
+
+    overflow: hidden;
+}
+nav::before,
+.service-card::before,
+.team-card::before,
+.blog-card::before,
+.testimonial-card::before,
+.work-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:-150%;
+
+    width:70%;
+    height:100%;
+
+    background:
+        linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.35),
+        transparent);
+
+    transform: skewX(-20deg);
+
+    transition: 1s;
+}
+
+nav:hover::before,
+.service-card:hover::before,
+.team-card:hover::before,
+.blog-card:hover::before,
+.testimonial-card:hover::before,
+.work-card:hover::before{
+
+    left:150%;
+}
+.btn-primary{
+
+    background:
+        linear-gradient(
+        135deg,
+        #3b82f6,
+        #06b6d4);
+
+    border:none;
+
+    box-shadow:
+        0 0 30px rgba(59,130,246,.35);
+
+    transition:.4s;
+}
+
+.btn-primary:hover{
+
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 0 50px rgba(59,130,246,.55),
+        0 20px 40px rgba(59,130,246,.25);
+}
+.hero{
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.hero::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:700px;
+    height:700px;
+
+    top:-250px;
+    right:-250px;
+
+    background:
+        radial-gradient(circle,
+        rgba(59,130,246,.30),
+        transparent);
+
+    filter: blur(140px);
+
+    animation: floatGlow 10s ease infinite;
+}
+
+.hero::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:600px;
+    height:600px;
+
+    bottom:-250px;
+    left:-250px;
+
+    background:
+        radial-gradient(circle,
+        rgba(16,185,129,.25),
+        transparent);
+
+    filter: blur(140px);
+
+    animation: floatGlow 12s ease infinite;
+}
+
+@keyframes floatGlow{
+
+    0%,100%{
+
+        transform:
+        translateY(0)
+        translateX(0);
+    }
+
+    50%{
+
+        transform:
+        translateY(-40px)
+        translateX(20px);
+    }
+}
+nav{
+
+    top:15px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:calc(100% - 40px);
+
+    max-width:1400px;
+
+    border-radius:28px;
+}
+*{
+
+    transition:
+        background .3s ease,
+        transform .3s ease,
+        box-shadow .3s ease;
+}
 </style>
 </head>
 <body>
