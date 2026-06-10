@@ -983,6 +983,124 @@ body::before {
 
     pointer-events: none;
     z-index: -1;
+} 
+
+--glass-bg: rgba(255, 255, 255, 0.08);
+--glass-border: rgba(255, 255, 255, 0.18);
+--glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+--glass-blur: blur(24px);
+nav {
+    position: fixed;
+    top: 15px;
+    left: 20px;
+    right: 20px;
+    z-index: 1000;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 18px 30px;
+
+    background: rgba(13, 27, 46, 0.45);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+
+    box-shadow:
+        0 8px 32px rgba(0,0,0,0.2),
+        inset 0 1px 1px rgba(255,255,255,0.15);
+}
+.service-card,
+.team-card,
+.testimonial-card,
+.blog-card,
+.work-card {
+    background: rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(255,255,255,0.15);
+
+    box-shadow:
+        0 8px 32px rgba(0,0,0,0.12),
+        inset 0 1px 1px rgba(255,255,255,0.1);
+
+    transition: all 0.4s ease;
+}
+
+.service-card:hover,
+.team-card:hover,
+.testimonial-card:hover,
+.blog-card:hover,
+.work-card:hover {
+    transform: translateY(-10px);
+
+    box-shadow:
+        0 20px 40px rgba(0,0,0,0.2),
+        inset 0 1px 2px rgba(255,255,255,0.2);
+}
+.hero::after {
+    content: "";
+    position: absolute;
+
+    width: 400px;
+    height: 400px;
+
+    top: -100px;
+    left: -100px;
+
+    background: radial-gradient(
+        circle,
+        rgba(30,111,255,0.35),
+        transparent 70%
+    );
+
+    filter: blur(80px);
+
+    animation: floatGlow 8s ease-in-out infinite;
+}
+
+@keyframes floatGlow {
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(30px);
+    }
+}
+.btn-primary,
+.btn-outline {
+    border-radius: 50px;
+
+    backdrop-filter: blur(15px);
+
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover,
+.btn-outline:hover {
+    transform: scale(1.05);
+
+    box-shadow: 0 10px 25px rgba(30,111,255,0.35);
+}
+
+body {
+    background:
+        linear-gradient(
+            135deg,
+            #07101d,
+            #0d1b2e,
+            #14284d
+        );
+
+    color: white;
+
+    overflow-x: hidden;
 }
 </style>
 </head>
