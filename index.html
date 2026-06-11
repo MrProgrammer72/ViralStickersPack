@@ -63,72 +63,162 @@ background:rgba(0,0,0,.05);
 
 }
 
-/* HEADER */
+/* APPLE LIQUID GLASS NAVBAR */
 
-header{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-padding:15px 30px;
-display:flex;
-justify-content:space-between;
-align-items:center;
+.liquid-nav{
+    position:fixed;
+    top:20px;
+    left:50%;
+    transform:translateX(-50%);
 
-background:rgba(255,255,255,0.08);
-backdrop-filter:blur(20px);
--webkit-backdrop-filter:blur(20px);
+    width:92%;
+    max-width:1100px;
 
-border-bottom:1px solid rgba(255,255,255,.1);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 
-z-index:1000;
+    padding:12px 22px;
+
+    border-radius:999px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.28),
+            rgba(255,255,255,.08)
+        );
+
+    backdrop-filter:blur(30px) saturate(180%);
+    -webkit-backdrop-filter:blur(30px) saturate(180%);
+
+    border:1px solid rgba(255,255,255,.18);
+
+    box-shadow:
+        0 8px 30px rgba(0,0,0,.18),
+        inset 0 1px 1px rgba(255,255,255,.35),
+        inset 0 -1px 1px rgba(255,255,255,.08);
+
+    overflow:hidden;
+    z-index:1000;
 }
 
+/* Dynamic reflection */
+
+.liquid-nav::before{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent 25%,
+            rgba(255,255,255,.25) 45%,
+            transparent 65%
+        );
+
+    transform:translateX(-100%);
+    animation:glassReflection 8s infinite linear;
+
+    pointer-events:none;
+}
+
+@keyframes glassReflection{
+
+    0%{
+        transform:translateX(-100%);
+    }
+
+    100%{
+        transform:translateX(250%);
+    }
+
+}
+
+/* LOGO */
+
 .logo{
-display:flex;
-align-items:center;
-gap:12px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    z-index:2;
 }
 
 .logo img{
-width:55px;
-height:55px;
-border-radius:50%;
-border:1px solid #ff4d88;
+    width:50px;
+    height:50px;
+    border-radius:50%;
+
+    border:1px solid rgba(255,255,255,.3);
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,.15);
 }
 
 .logo h2{
-color:#ff4d88;
+    color:white;
+    font-size:22px;
 }
 
+/* NAVIGATION */
+
 nav{
-display:flex;
-gap:15px;
+    display:flex;
+    gap:12px;
+    z-index:2;
 }
 
 nav a{
-text-decoration:none;
-color:white;
-padding:10px 18px;
-border-radius:30px;
-background:rgba(255,255,255,.08);
-backdrop-filter:blur(10px);
-transition:.4s;
+
+    text-decoration:none;
+
+    color:white;
+
+    padding:12px 20px;
+
+    border-radius:999px;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(15px);
+
+    transition:all .35s ease;
 }
 
 nav a:hover{
-background:#ff4d88;
-box-shadow:
-0 0 15px #ff4d88,
-0 0 30px #ff4d88;
+
+    background:rgba(255,255,255,.18);
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 6px 20px rgba(255,255,255,.15),
+        inset 0 1px 1px rgba(255,255,255,.3);
 }
+
+/* MENU ICON */
 
 .menu{
-display:none;
-font-size:35px;
-cursor:pointer;
+
+    display:none;
+
+    font-size:34px;
+
+    color:white;
+
+    cursor:pointer;
+
+    z-index:2;
+
+    user-select:none;
+
+    transition:.3s;
 }
 
+.menu:hover{
+    transform:scale(1.1);
+}
 /* HERO */
 
 .hero{
@@ -310,55 +400,97 @@ margin-top:30px;
 
 @media(max-width:768px){
 
-.menu{
-display:block;
-}
+    .menu{
+        display:block;
+    }
 
-nav{
-position:absolute;
-top:85px;
-left:0;
-width:100%;
-display:none;
-flex-direction:column;
-padding:20px;
-background:rgba(0,0,0,.95);
-}
+    nav{
 
-nav.active{
-display:flex;
-}
+        position:absolute;
 
-.hero-content h1{
-font-size:40px;
-}
+        top:75px;
 
-.hero-content p{
-font-size:18px;
-}
+        left:50%;
+
+        transform:
+            translateX(-50%)
+            translateY(-15px)
+            scale(.9);
+
+        opacity:0;
+
+        pointer-events:none;
+
+        flex-direction:column;
+
+        width:90%;
+
+        padding:20px;
+
+        border-radius:35px;
+
+        background:
+            linear-gradient(
+                135deg,
+                rgba(255,255,255,.22),
+                rgba(255,255,255,.08)
+            );
+
+        backdrop-filter:blur(30px);
+
+        border:1px solid rgba(255,255,255,.15);
+
+        box-shadow:
+            0 15px 40px rgba(0,0,0,.18);
+
+        transition:all .45s cubic-bezier(.22,1,.36,1);
+    }
+
+    nav.active{
+
+        opacity:1;
+
+        pointer-events:auto;
+
+        transform:
+            translateX(-50%)
+            translateY(0)
+            scale(1);
+    }
+
+    nav a{
+        text-align:center;
+    }
+
+    .hero-content h1{
+        font-size:42px;
+    }
+
+    .hero-content p{
+        font-size:18px;
+    }
 
 }
-
 </style>
 </head>
 <body>
 
-<header>
+<header class="liquid-nav">
 
-<div class="logo">
-<img src="assets/profile.jpeg">
-<h2>Love Vibes 💗✨</h2>
-</div>
+    <div class="logo">
+        <img src="assets/profile.jpeg">
+        <h2>Love Vibes 💗✨</h2>
+    </div>
 
-<div class="menu" onclick="toggleMenu()">
-☰
-</div>
+    <div class="menu" onclick="toggleMenu()">
+        ☰
+    </div>
 
-<nav id="menu">
-<a href="#home">Home</a>
-<a href="#stickers">Telegram Stickers</a>
-<a href="#contact">Contact</a>
-</nav>
+    <nav id="menu">
+        <a href="#home">Home</a>
+        <a href="#stickers">Stickers</a>
+        <a href="#contact">Contact</a>
+    </nav>
 
 </header>
 
@@ -481,8 +613,12 @@ visit channel
 <script>
 
 function toggleMenu(){
-document.getElementById("menu")
-.classList.toggle("active");
+
+    const menu =
+        document.getElementById("menu");
+
+    menu.classList.toggle("active");
+
 }
 
 let slides =
@@ -492,19 +628,20 @@ let index = 0;
 
 setInterval(()=>{
 
-slides[index].classList.remove("active");
+    slides[index]
+    .classList.remove("active");
 
-index++;
+    index++;
 
-if(index >= slides.length){
-index = 0;
-}
+    if(index >= slides.length){
+        index = 0;
+    }
 
-slides[index].classList.add("active");
+    slides[index]
+    .classList.add("active");
 
 },3000);
 
 </script>
-
 </body>
 </html>
