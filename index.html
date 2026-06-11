@@ -12,19 +12,19 @@
 }
 
 :root {
-  --pink:     #ff4d88;
+  --pink:      #ff4d88;
   --pink-glow: rgba(255,77,136,0.45);
   --pink-soft: rgba(255,77,136,0.18);
-  --white10:  rgba(255,255,255,0.10);
-  --white15:  rgba(255,255,255,0.15);
-  --white20:  rgba(255,255,255,0.20);
-  --white30:  rgba(255,255,255,0.30);
-  --white60:  rgba(255,255,255,0.60);
-  --edge:     rgba(255,255,255,0.35);
-  --shadow:   rgba(0,0,0,0.30);
-  --blur-sm:  blur(16px);
-  --blur-md:  blur(28px);
-  --blur-lg:  blur(44px);
+  --white10:   rgba(255,255,255,0.10);
+  --white15:   rgba(255,255,255,0.15);
+  --white20:   rgba(255,255,255,0.20);
+  --white30:   rgba(255,255,255,0.30);
+  --white60:   rgba(255,255,255,0.60);
+  --edge:      rgba(255,255,255,0.35);
+  --shadow:    rgba(0,0,0,0.30);
+  --blur-sm:   blur(16px);
+  --blur-md:   blur(28px);
+  --blur-lg:   blur(44px);
   --radius-pill: 999px;
   --radius-card: 28px;
   --radius-btn:  50px;
@@ -61,23 +61,6 @@ body {
   0%, 100% { transform: translate(0,0) scale(1); }
   33%       { transform: translate(30px,-40px) scale(1.05); }
   66%       { transform: translate(-20px,25px) scale(0.97); }
-}
-
-/* ─── LIQUID GLASS MIXIN CLASSES ───────────────────────────── */
-.glass {
-  background:
-    linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.12) 100%);
-  backdrop-filter: blur(44px) saturate(180%) brightness(1.05);
-  -webkit-backdrop-filter: blur(44px) saturate(180%) brightness(1.05);
-  border: 1px solid rgba(255,255,255,0.22);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.40),
-    inset 0 -1px 0 rgba(0,0,0,0.12),
-    inset 1px 0 0 rgba(255,255,255,0.20),
-    inset -1px 0 0 rgba(255,255,255,0.10),
-    0 8px 32px rgba(0,0,0,0.28),
-    0 2px 8px rgba(0,0,0,0.18),
-    0 0 0 0.5px rgba(255,255,255,0.12);
 }
 
 /* ─── HEADER / NAVBAR ───────────────────────────────────────── */
@@ -297,6 +280,36 @@ nav a:hover::before { opacity: 1; }
     0 12px 32px rgba(0,0,0,0.35);
 }
 
+/* ─── FLOATING SCROLL INDICATOR ─────────────────────────────── */
+.scroll-hint {
+  position: absolute; bottom: 38px; left: 50%; transform: translateX(-50%);
+  z-index: 10; display: flex; flex-direction: column; align-items: center; gap: 8px;
+  animation: bobFloat 2.5s ease-in-out infinite;
+}
+.scroll-pill {
+  width: 28px; height: 44px; border-radius: 14px;
+  border: 1.5px solid rgba(255,255,255,0.35);
+  display: flex; align-items: flex-start; justify-content: center;
+  padding-top: 7px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.04) 100%);
+  backdrop-filter: blur(20px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.30);
+}
+.scroll-dot {
+  width: 4px; height: 10px; border-radius: 2px;
+  background: rgba(255,255,255,0.70);
+  animation: scrollDot 2.5s ease-in-out infinite;
+}
+@keyframes scrollDot {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  80%       { transform: translateY(10px); opacity: 0.2; }
+}
+@keyframes bobFloat {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(6px); }
+}
+
 /* ─── SECTION TITLE ─────────────────────────────────────────── */
 .section-title {
   text-align: center; padding: 80px 20px 10px;
@@ -335,8 +348,7 @@ nav a:hover::before { opacity: 1; }
     0 2px 8px rgba(0,0,0,0.20);
   transition: transform 0.5s var(--spring), box-shadow 0.5s var(--ease);
 }
-
-/* top-edge highlight bar */
+/* top-edge highlight */
 .card::before {
   content: '';
   position: absolute; top: 0; left: 10%; right: 10%;
@@ -344,7 +356,7 @@ nav a:hover::before { opacity: 1; }
   background: linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent);
   z-index: 2;
 }
-/* subtle pink inner glow on hover */
+/* pink inner glow on hover */
 .card::after {
   content: '';
   position: absolute; inset: 0; border-radius: var(--radius-card);
@@ -469,7 +481,14 @@ nav a:hover::before { opacity: 1; }
   font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase;
   position: relative; z-index: 2;
 }
+.contact-desc {
+  margin-top: 20px; margin-bottom: 20px;
+  color: rgba(255,255,255,0.60); font-size: 14px; line-height: 1.6;
+  position: relative; z-index: 2;
+}
+.contact-card .btn { position: relative; z-index: 2; }
 
+/* Telegram button */
 .telegram-btn {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 13px 28px; border-radius: var(--radius-pill);
@@ -499,13 +518,6 @@ nav a:hover::before { opacity: 1; }
   font-size: 12px;
 }
 
-.contact-desc {
-  margin-top: 20px; margin-bottom: 20px;
-  color: rgba(255,255,255,0.60); font-size: 14px; line-height: 1.6;
-  position: relative; z-index: 2;
-}
-.contact-card .btn { position: relative; z-index: 2; }
-
 /* ─── DIVIDER ───────────────────────────────────────────────── */
 .divider {
   max-width: 1200px; margin: 0 auto;
@@ -518,36 +530,6 @@ footer {
   text-align: center; padding: 28px;
   font-size: 13px; color: rgba(255,255,255,0.35);
   border-top: 1px solid rgba(255,255,255,0.07);
-}
-
-/* ─── FLOATING SCROLL INDICATOR ─────────────────────────────── */
-.scroll-hint {
-  position: absolute; bottom: 38px; left: 50%; transform: translateX(-50%);
-  z-index: 10; display: flex; flex-direction: column; align-items: center; gap: 8px;
-  animation: bobFloat 2.5s ease-in-out infinite;
-}
-.scroll-pill {
-  width: 28px; height: 44px; border-radius: 14px;
-  border: 1.5px solid rgba(255,255,255,0.35);
-  display: flex; align-items: flex-start; justify-content: center;
-  padding-top: 7px;
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.04) 100%);
-  backdrop-filter: blur(20px);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.30);
-}
-.scroll-dot {
-  width: 4px; height: 10px; border-radius: 2px;
-  background: rgba(255,255,255,0.70);
-  animation: scrollDot 2.5s ease-in-out infinite;
-}
-@keyframes scrollDot {
-  0%, 100% { transform: translateY(0); opacity: 1; }
-  80%       { transform: translateY(10px); opacity: 0.2; }
-}
-@keyframes bobFloat {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50%       { transform: translateX(-50%) translateY(6px); }
 }
 
 /* ─── RESPONSIVE ────────────────────────────────────────────── */
@@ -587,6 +569,27 @@ footer {
     <h2>Love Vibes 💗✨</h2>
   </a>
 
+  <!-- Desktop nav -->
   <nav id="desktop-nav">
     <a href="#home">Home</a>
-    <a href="#stickers">Stick
+    <a href="#stickers">Telegram Stickers</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- Hamburger -->
+  <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- Mobile nav overlay -->
+<div class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav-backdrop" id="navBackdrop"></div>
+  <div class="mobile-nav-pills">
+    <a href="#home"     onclick="closeMenu()">Home</a>
+    <a href="#stickers" onclick="closeMenu()">Telegram Stickers</a>
+    <a href="#contact"  onclick="closeMenu()">Contact</a>
+  </div>
+</div>
+
+<!-- ─── HERO ──────────────────────────────────────
